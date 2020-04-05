@@ -1,11 +1,11 @@
 <?php
-namespace phlow\library\services\imgix\factories;
+namespace carlonicora\minimalism\services\imgix\factories;
 
 use carlonicora\minimalism\core\services\abstracts\abstractServiceFactory;
 use carlonicora\minimalism\core\services\exceptions\configurationException;
 use carlonicora\minimalism\core\services\factories\servicesFactory;
-use phlow\library\services\imgix\configurations\imgixConfigurations;
-use phlow\library\services\imgix\imgix;
+use carlonicora\minimalism\services\imgix\configurations\imgixConfigurations;
+use carlonicora\minimalism\services\imgix\imgix;
 
 class serviceFactory extends abstractServiceFactory {
     /**

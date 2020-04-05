@@ -1,5 +1,5 @@
 <?php
-namespace phlow\library\services\imgix\configurations;
+namespace carlonicora\minimalism\services\imgix\configurations;
 
 use carlonicora\minimalism\core\services\abstracts\abstractServiceConfigurations;
 use carlonicora\minimalism\core\services\exceptions\configurationException;

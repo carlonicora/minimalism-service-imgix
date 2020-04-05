@@ -1,11 +1,11 @@
 <?php
-namespace phlow\library\services\imgix;
+namespace carlonicora\minimalism\services\imgix;
 
 use carlonicora\minimalism\core\services\abstracts\abstractService;
 use carlonicora\minimalism\core\services\factories\servicesFactory;
 use carlonicora\minimalism\core\services\interfaces\serviceConfigurationsInterface;
 use Imgix\UrlBuilder;
-use phlow\library\services\imgix\configurations\imgixConfigurations;
+use carlonicora\minimalism\services\imgix\configurations\imgixConfigurations;
 
 class imgix extends abstractService {
     /** @var imgixConfigurations  */
