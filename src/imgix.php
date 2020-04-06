@@ -11,8 +11,8 @@ class imgix extends abstractService {
     /** @var imgixConfigurations  */
     private imgixConfigurations $configData;
 
-    /** @var UrlBuilder */
-    private UrlBuilder $builder;
+    /** @var UrlBuilder|null */
+    private ?UrlBuilder $builder=null;
 
     /**
      * abstractApiCaller constructor.
