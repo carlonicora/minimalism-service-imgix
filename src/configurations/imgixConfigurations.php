@@ -22,18 +22,18 @@ class imgixConfigurations extends abstractServiceConfigurations {
      * @throws configurationException
      */
     public function __construct(){
-        if (!getenv('PHLOW_CDN_DOMAIN')){
-            throw new configurationException('imgix', 'PHLOW_CDN_DOMAIN is a required configuration');
+        if (!getenv('IMGIX_DOMAIN')){
+            throw new configurationException('imgix', 'IMGIX_DOMAIN is a required configuration');
         }
 
-        if (!getenv('PHLOW_CDN_KEY')){
-            throw new configurationException('imgix', 'PHLOW_CDN_KEY is a required configuration');
+        if (!getenv('IMGIX_KEY')){
+            throw new configurationException('imgix', 'IMGIX_KEY is a required configuration');
         }
 
-        $this->domain = getenv('PHLOW_CDN_DOMAIN');
-        $this->key = getenv('PHLOW_CDN_KEY');
+        $this->domain = getenv('IMGIX_DOMAIN');
+        $this->key = getenv('IMGIX_KEY');
 
-        $this->defaultImageHeigth = (!empty(getenv('PHLOW_DEFAULT_IMAGE_HEIGTH'))) ? (int)getenv('PHLOW_DEFAULT_IMAGE_HEIGTH') : 520;
-        $this->defaultImageWidth = (!empty(getenv('PHLOW_DEFAULT_IMAGE_WIDTH'))) ? (int)getenv('PHLOW_DEFAULT_IMAGE_WIDTH') : 520;
+        $this->defaultImageHeigth = (!empty(getenv('IMGIX_DEFAULT_IMAGE_HEIGTH'))) ? (int)getenv('IMGIX_DEFAULT_IMAGE_HEIGTH') : 520;
+        $this->defaultImageWidth = (!empty(getenv('IMGIX_DEFAULT_IMAGE_WIDTH'))) ? (int)getenv('IMGIX_DEFAULT_IMAGE_WIDTH') : 520;
     }
 }
