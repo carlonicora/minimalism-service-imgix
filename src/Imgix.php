@@ -43,12 +43,11 @@ class Imgix extends abstractService {
      * @param string $photo
      * @param int|null $width
      * @param int|null $heigth
+     * @param array $params
      * @return string
      */
-    public function generateSignedUrl(string $photo, int $width=null, int $heigth=null): string
+    public function generateSignedUrl(string $photo, int $width=null, int $heigth=null, array $params=[]): string
     {
-        $params = [];
-
         $params['w'] = $width ?? $this->getDefaultImageWidth();
         $params['h'] = $heigth ?? $this->getDefaultImageHeigth();
 
