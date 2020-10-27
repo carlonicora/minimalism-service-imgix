@@ -58,9 +58,10 @@ class Imgix extends abstractService {
      * @param string|null $avatarData
      * @param int $width
      * @param int $heigth
+     * @param array $params
      * @return string|null
      */
-    public function generateAvatar(?string $avatarData, ?int $width=null, ?int $heigth=null): ?string
+    public function generateAvatar(?string $avatarData, ?int $width=null, ?int $heigth=null, array $params=[]): ?string
     {
         $response = null;
 
@@ -68,7 +69,7 @@ class Imgix extends abstractService {
             if (stripos($avatarData, 'http') === 0) {
                 $response =  $avatarData;
             } else {
-                $response = $this->generateSignedUrl($avatarData, $width, $heigth);
+                $response = $this->generateSignedUrl($avatarData, $width, $heigth, $params);
             }
         }
 
