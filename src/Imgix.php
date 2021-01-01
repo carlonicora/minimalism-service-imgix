@@ -1,30 +1,21 @@
 <?php
 namespace CarloNicora\Minimalism\Services\Imgix;
 
-use CarloNicora\Minimalism\Core\Services\Abstracts\AbstractService;
-use CarloNicora\Minimalism\Core\Services\Factories\ServicesFactory;
-use CarloNicora\Minimalism\Core\Services\Interfaces\ServiceConfigurationsInterface;
+use CarloNicora\Minimalism\Interfaces\ServiceInterface;
 use Imgix\UrlBuilder;
-use CarloNicora\Minimalism\Services\Imgix\Configurations\ImgixConfigurations;
 
-class Imgix extends abstractService {
-    /** @var ImgixConfigurations  */
-    private ImgixConfigurations $configData;
-
+class Imgix implements ServiceInterface
+{
     /** @var UrlBuilder|null */
     private ?UrlBuilder $builder=null;
 
-    /**
-     * abstractApiCaller constructor.
-     * @param ServiceConfigurationsInterface $configData
-     * @param ServicesFactory $services
-     */
-    public function __construct(ServiceConfigurationsInterface $configData, ServicesFactory $services)
+    public function __construct(
+        private string $MINIMALISM_SERVICE_IMGIX_DOMAIN,
+        private string $MINIMALISM_SERVICE_IMGIX_KEY,
+        private int $MINIMALISM_SERVICE_IMGIX_DEFAULT_IMAGE_HEIGTH=520,
+        private int $MINIMALISM_SERVICE_IMGIX_DEFAULT_IMAGE_WIDTH=520,
+    )
     {
-        parent::__construct($configData, $services);
-
-        /** @noinspection PhpFieldAssignmentTypeMismatchInspection */
-        $this->configData = $configData;
     }
 
     /**
@@ -33,7 +24,10 @@ class Imgix extends abstractService {
     private function getBuilder(): UrlBuilder
     {
         if ($this->builder === null) {
-            $this->builder = new UrlBuilder($this->configData->getDomain(), true, $this->configData->getKey());
+            $this->builder = new UrlBuilder(
+                $this->MINIMALISM_SERVICE_IMGIX_DOMAIN,
+                true,
+                $this->MINIMALISM_SERVICE_IMGIX_KEY);
         }
 
         return $this->builder;
@@ -46,21 +40,30 @@ class Imgix extends abstractService {
      * @param array $params
      * @return string
      */
-    public function generateSignedUrl(string $photo, int $width=null, int $heigth=null, array $params=[]): string
+    public function generateSignedUrl(
+        string $photo,
+        int $width=null,
+        int $heigth=null,
+        array $params=[]
+    ): string
     {
-        $params['w'] = $width ?? $this->getDefaultImageWidth();
-        $params['h'] = $heigth ?? $this->getDefaultImageHeigth();
+        $params['w'] = $width ?? $this->MINIMALISM_SERVICE_IMGIX_DEFAULT_IMAGE_WIDTH;
+        $params['h'] = $heigth ?? $this->MINIMALISM_SERVICE_IMGIX_DEFAULT_IMAGE_HEIGTH;
 
         return $this->getBuilder()->createURL($photo, $params);
     }
 
     /**
      * @param string|null $avatarData
-     * @param int $width
-     * @param int $heigth
+     * @param int|null $width
+     * @param int|null $heigth
      * @return string|null
      */
-    public function generateAvatar(?string $avatarData, ?int $width=null, ?int $heigth=null): ?string
+    public function generateAvatar(
+        ?string $avatarData,
+        ?int $width=null,
+        ?int $heigth=null
+    ): ?string
     {
         $response = null;
 
@@ -68,7 +71,11 @@ class Imgix extends abstractService {
             if (stripos($avatarData, 'http') === 0) {
                 $response =  $avatarData;
             } else {
-                $response = $this->generateSignedUrl($avatarData, $width, $heigth);
+                $response = $this->generateSignedUrl(
+                    $avatarData,
+                    $width,
+                    $heigth
+                );
             }
         }
 
@@ -76,18 +83,12 @@ class Imgix extends abstractService {
     }
 
     /**
-     * @return int
+     *
      */
-    public function getDefaultImageHeigth() : int
-    {
-        return $this->configData->getDefaultImageHeigth();
-    }
+    public function initialise(): void {}
 
     /**
-     * @return int
+     *
      */
-    public function getDefaultImageWidth() : int
-    {
-        return $this->configData->getDefaultImageWidth();
-    }
+    public function destroy(): void {}
 }
