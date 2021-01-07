@@ -12,7 +12,7 @@ class Imgix implements ServiceInterface
     public function __construct(
         private string $MINIMALISM_SERVICE_IMGIX_DOMAIN,
         private string $MINIMALISM_SERVICE_IMGIX_KEY,
-        private int $MINIMALISM_SERVICE_IMGIX_DEFAULT_IMAGE_HEIGTH=520,
+        private int $MINIMALISM_SERVICE_IMGIX_DEFAULT_IMAGE_HEIGHT=520,
         private int $MINIMALISM_SERVICE_IMGIX_DEFAULT_IMAGE_WIDTH=520,
     )
     {
@@ -36,19 +36,19 @@ class Imgix implements ServiceInterface
     /**
      * @param string $photo
      * @param int|null $width
-     * @param int|null $heigth
+     * @param int|null $height
      * @param array $params
      * @return string
      */
     public function generateSignedUrl(
         string $photo,
         int $width=null,
-        int $heigth=null,
+        int $height=null,
         array $params=[]
     ): string
     {
         $params['w'] = $width ?? $this->MINIMALISM_SERVICE_IMGIX_DEFAULT_IMAGE_WIDTH;
-        $params['h'] = $heigth ?? $this->MINIMALISM_SERVICE_IMGIX_DEFAULT_IMAGE_HEIGTH;
+        $params['h'] = $height ?? $this->MINIMALISM_SERVICE_IMGIX_DEFAULT_IMAGE_HEIGHT;
 
         return $this->getBuilder()->createURL($photo, $params);
     }
@@ -56,13 +56,13 @@ class Imgix implements ServiceInterface
     /**
      * @param string|null $avatarData
      * @param int|null $width
-     * @param int|null $heigth
+     * @param int|null $height
      * @return string|null
      */
     public function generateAvatar(
         ?string $avatarData,
         ?int $width=null,
-        ?int $heigth=null
+        ?int $height=null
     ): ?string
     {
         $response = null;
@@ -74,12 +74,28 @@ class Imgix implements ServiceInterface
                 $response = $this->generateSignedUrl(
                     $avatarData,
                     $width,
-                    $heigth
+                    $height
                 );
             }
         }
 
         return $response;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDefaultImageHeight() : int
+    {
+        return $this->MINIMALISM_SERVICE_IMGIX_DEFAULT_IMAGE_HEIGHT;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDefaultImageWidth() : int
+    {
+        return $this->MINIMALISM_SERVICE_IMGIX_DEFAULT_IMAGE_WIDTH;
     }
 
     /**
