@@ -57,12 +57,14 @@ class Imgix implements ServiceInterface
      * @param string|null $avatarData
      * @param int|null $width
      * @param int|null $height
+     * @param array $params
      * @return string|null
      */
     public function generateAvatar(
         ?string $avatarData,
         ?int $width=null,
-        ?int $height=null
+        ?int $height=null,
+        array $params=[],
     ): ?string
     {
         $response = null;
@@ -74,7 +76,8 @@ class Imgix implements ServiceInterface
                 $response = $this->generateSignedUrl(
                     $avatarData,
                     $width,
-                    $height
+                    $height,
+                    $params,
                 );
             }
         }
