@@ -13,7 +13,6 @@ services:
     working_dir: /app
     volumes:
       - ../:/app
-      - ../:/opt/project
     tty: true
     stdin_open: true
     networks:
