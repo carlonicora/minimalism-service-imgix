@@ -1,7 +1,7 @@
 {
   "name": "carlonicora/minimalism-service-imgix",
   "description": "Imgix service for minimalism",
-  "version": "2.0.1",
+  "version": "3.0.3",
   "homepage": "https://carlonicora.com",
   "time": "2019-05-14",
   "license": "MIT",
@@ -11,7 +11,7 @@
     {
       "name": "Carlo Nicora",
       "email": "carlo@carlonicora.com",
-      "homepage": "http://carlonicora.com",
+      "homepage": "https://carlonicora.com",
       "role": "Developer"
     }
   ],
@@ -20,14 +20,9 @@
       "CarloNicora\\Minimalism\\Services\\Imgix\\":"src/"
     }
   },
-  "autoload-dev": {
-    "psr-4": {
-      "CarloNicora\\Minimalism\\Services\\Imgix\\Tests\\":"tests/"
-    }
-  },
   "require": {
-    "php": "^7.4",
-    "carlonicora/minimalism": "~11.0",
+    "php": ">=8.0",
+    "carlonicora/minimalism": "~12.0",
     "imgix/imgix-php": "*"
   },
   "require-dev": {
