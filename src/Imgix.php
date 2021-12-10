@@ -1,10 +1,10 @@
 <?php
 namespace CarloNicora\Minimalism\Services\Imgix;
 
-use CarloNicora\Minimalism\Interfaces\ServiceInterface;
+use CarloNicora\Minimalism\Abstracts\AbstractService;
 use Imgix\UrlBuilder;
 
-class Imgix implements ServiceInterface
+class Imgix extends AbstractService
 {
     /** @var UrlBuilder|null */
     private ?UrlBuilder $builder=null;
@@ -23,6 +23,7 @@ class Imgix implements ServiceInterface
         private int $MINIMALISM_SERVICE_IMGIX_DEFAULT_IMAGE_WIDTH=520,
     )
     {
+        parent::__construct();
     }
 
     /**
