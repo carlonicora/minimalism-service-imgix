@@ -23,7 +23,6 @@ class Imgix extends AbstractService
         private int $MINIMALISM_SERVICE_IMGIX_DEFAULT_IMAGE_WIDTH=520,
     )
     {
-        parent::__construct();
     }
 
     /**
@@ -108,14 +107,4 @@ class Imgix extends AbstractService
     {
         return $this->MINIMALISM_SERVICE_IMGIX_DEFAULT_IMAGE_WIDTH;
     }
-
-    /**
-     *
-     */
-    public function initialise(): void {}
-
-    /**
-     *
-     */
-    public function destroy(): void {}
 }
